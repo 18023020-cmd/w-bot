@@ -3,6 +3,13 @@ const { parseTransaction } = require('./src/parser');
 const db = require('./src/database');
 const pino = require('pino');
 const qrcode = require('qrcode-terminal');
+const http = require("http");
+
+http.createServer((req, res) => {
+  res.writeHead(200, { "Content-Type": "text/plain" });
+  res.end("Bot alive");
+}).listen(3000);
+
 
 async function connectToWhatsApp() {
     const { state, saveCreds } = await useMultiFileAuthState('auth_info');
